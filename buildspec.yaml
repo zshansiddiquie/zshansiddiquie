@@ -4,7 +4,6 @@ phases:
   pre_build:
     on-failure: ABORT
     commands:
-      - git clone https://github.com/zshansiddiquie/zshansiddiquie.git
       - echo "Logging into Docker Hub."
       - echo SunGodLuffy135@ | docker login --username zshansiddiquie --password-stdin
 
