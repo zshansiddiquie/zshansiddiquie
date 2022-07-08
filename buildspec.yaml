@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - git clone https://github.com/zshansiddiquie/zshansiddiquie.git
+      - echo "Logging into Docker Hub."
+      - echo SunGodLuffy135@ | docker login --username zshansiddiquie --password-stdin
+
+  build:
+    on-failure: ABORT
+    commands:
+      - docker build . -t zshansiddiquie/html_nginx:latest
+  post_build:
+    on-failure: ABORT
+    commands:
+      - docker push zshansiddiquie/html_nginx
+      - echo writing image definition file
+      - printf '[{"name":"nginx-task","imageUri":"%s"}]' zshansiddiquie/html_nginx:latest > imagedefinitions.json
+  artifacts:
+    files: imagedefinitions.json
