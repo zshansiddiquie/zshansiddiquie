@@ -18,5 +18,6 @@ phases:
       - docker push zshansiddiquie/html_nginx
       - echo writing image definition file
       - printf '[{"name":"nginx-task","imageUri":"%s"}]' zshansiddiquie/html_nginx:latest > imagedefinitions.json
-  artifacts:
-    files: imagedefinitions.json
+ artifacts:
+  files:
+    - imagedefinitions.json
